@@ -8,14 +8,42 @@
  * Service of the app
  */
   angular.module('app')
-    .factory('RedditService', function () {
+    .factory('RedditService', function ($q) {
       return {
         getHot: function(name) {
-          // Fetch the 5 hottest posts on /r/awww
-          reddit.hot(name).limit(5).fetch(function(res) {
-            // res contains JSON parsed response from Reddit
-            console.log(res);
+          var deferred = $q.defer();
+          reddit.hot(name).limit(50).fetch(function(res) {
+            deferred.resolve(res);
           });
+          return deferred.promise;
+        },
+        getTop: function(name) {
+          var deferred = $q.defer();
+          reddit.top(name).limit(50).fetch(function(res) {
+            deferred.resolve(res);
+          });
+          return deferred.promise;
+        },
+        getNew: function(name) {
+          var deferred = $q.defer();
+          reddit.new(name).limit(50).fetch(function(res) {
+            deferred.resolve(res);
+          });
+          return deferred.promise;
+        },
+        getControversial: function(name) {
+          var deferred = $q.defer();
+          reddit.controversial(name).limit(50).fetch(function(res) {
+            deferred.resolve(res);
+          });
+          return deferred.promise;
+        },
+        getComments: function(name, article) {
+          var deferred = $q.defer();
+          reddit.comments(article, name).limit(50).sort("hot").fetch(function(res) {
+            deferred.resolve(res);
+          });
+          return deferred.promise;
         }
       }
     });

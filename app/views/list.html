@@ -1,0 +1,14 @@
+<h1>Posts from "{{name}}"</h1>
+<div class="row">
+  <button class="col-lg-2 btn btn-default" ng-click="getHot()">Hot</button>
+  <button class="col-lg-2 btn btn-default" ng-click="getNew()">New</button>
+  <button class="col-lg-2 btn btn-default" ng-click="getControversial()">Controversial</button>
+  <button class="col-lg-2 btn btn-default" ng-click="getTop()">Top</button>
+</div>
+<div ng-repeat="post in posts" class="underlined">
+  <div><a ng-href="#/article/{{name}}/{{post.data.id}}">{{post.data.title}}</a></div>
+  <div class="row small">
+    <div class="col-lg-6 text-left">{{post.data.author}}</div>
+    <div class="col-lg-6 text-right">{{formatDate(post.data.created_utc)}}</div>
+  </div>
+</div>
