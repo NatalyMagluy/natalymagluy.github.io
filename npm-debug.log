@@ -1,0 +1,41 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'grunt-cli\\' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose cache add [ 'grunt-cli\\', null ]
+6 verbose cache add name=undefined spec="grunt-cli\\" args=["grunt-cli\\",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'grunt-cli/',
+7 verbose parsed url   path: 'grunt-cli/',
+7 verbose parsed url   href: 'grunt-cli/' }
+8 silly lockFile b9ee78e4-grunt-cli grunt-cli\
+9 verbose lock grunt-cli\ C:\Users\NMagliui\AppData\Roaming\npm-cache\b9ee78e4-grunt-cli.lock
+10 silly lockFile b9ee78e4-grunt-cli grunt-cli\
+11 silly lockFile b9ee78e4-grunt-cli grunt-cli\
+12 error addLocal Could not install grunt-cli\
+13 error Error: ENOENT, stat 'C:\natalymagluy.github.io\grunt-cli'
+14 error If you need help, you may report this *entire* log,
+14 error including the npm and node versions, at:
+14 error     <http://github.com/npm/npm/issues>
+15 error System Windows_NT 6.1.7601
+16 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "grunt-cli\\"
+17 error cwd C:\natalymagluy.github.io
+18 error node -v v0.10.35
+19 error npm -v 1.4.28
+20 error path C:\natalymagluy.github.io\grunt-cli
+21 error code ENOENT
+22 error errno 34
+23 verbose exit [ 34, true ]
