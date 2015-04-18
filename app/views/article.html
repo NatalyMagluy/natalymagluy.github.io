@@ -1,8 +1,19 @@
 <h1>Comments for "{{name}}"</h1>
+<div class="small">By {{post.author}}</div>
+<h2><img ng-src="{{post.thumbnail}}"/>{{post.title}}</h2>
+<a ng-href="{{post.url}}">Click to see</a>
 <div ng-repeat="comment in comments" class="underlined">
-  <div>{{comment.data.title}}</div>
+  <div>{{comment.body || comment.selftext}}</div>
   <div class="row small">
-    <div class="col-lg-6 text-left">{{comment.data.author}}</div>
-    <div class="col-lg-6 text-right">{{formatDate(comment.data.created_utc)}}</div>
+    <div class="col-sm-6 text-left">{{comment.author}}</div>
+    <div class="col-sm-6 text-right">{{formatDate(comment.created_utc)}}</div>
+  </div>
+  <div ng-repeat="reply in comment.replies" class="small underlined">
+    <div>{{reply.data.body || reply.data.selftext}}</div>
+    <div class="row small">
+      <div class="col-sm-6 text-left">{{reply.data.author}}</div>
+      <div class="col-sm-6 text-right">{{formatDate(reply.data.created_utc)}}</div>
+    </div>
+
   </div>
 </div>

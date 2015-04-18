@@ -6,9 +6,12 @@
   <button class="col-lg-2 btn btn-default" ng-click="getTop()">Top</button>
 </div>
 <div ng-repeat="post in posts" class="underlined">
-  <div><a ng-href="#/article/{{name}}/{{post.data.id}}">{{post.data.title}}</a></div>
+  <div>
+    <img ng-src="{{post.data.thumbnail}}"/>
+    <a ng-href="#/list/{{name}}/comments/{{post.data.id}}">{{post.data.title}}</a>
+  </div>
   <div class="row small">
-    <div class="col-lg-6 text-left">{{post.data.author}}</div>
-    <div class="col-lg-6 text-right">{{formatDate(post.data.created_utc)}}</div>
+    <div class="col-sm-6 text-left">{{post.data.author}}</div>
+    <div class="col-sm-6 text-right">{{formatDate(post.data.created_utc)}}</div>
   </div>
 </div>

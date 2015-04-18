@@ -24,7 +24,7 @@ angular
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
       })
-      .when('/article/:name/:article', {
+      .when('/list/:name/comments/:article', {
         templateUrl: 'views/article.html',
         controller: 'ArticleCtrl'
       })
