@@ -33,6 +33,13 @@ angular.module('app')
 
     $scope.get = function (mode) {
       if(modes.indexOf(mode) > -1) {
+        if(currentMode !== mode) {
+          opts = {
+            after: null,
+            before: null,
+            count: null
+          };
+        }
         currentMode = mode;
         var req = RedditService[currentMode]($scope.name).limit($scope.pageSize);
 

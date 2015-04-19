@@ -39,4 +39,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  }).run(function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(reg) {
+        console.log('Yey!', reg);
+      }).catch(function(err) {
+        console.log('Boo!', err);
+      });
   });
