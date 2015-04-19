@@ -8,10 +8,16 @@
  * Controller of the app
  */
 angular.module('app')
-  .controller('ArticleCtrl', function ($scope, $routeParams, RedditService, TimeFormatterService) {
+  .controller('ArticleCtrl', function ($scope,
+                                       $routeParams,
+                                       RedditService,
+                                       TimeFormatterService) {
     $scope.article = $routeParams.article;
     $scope.name = $routeParams.name;
+    $scope.loading = false;
+
     $scope.getComments = function() {
+      $scope.loading = true;
       //TODO: find way to get all comments
       RedditService.comments($scope.article, $scope.name).limit(500).sort("hot").fetch(function(val) {
           $scope.post = val[0].data.children[0].data;
@@ -22,6 +28,7 @@ angular.module('app')
             comment.replies = value.data.replies && traverseReplies(value.data.replies.data.children);
             $scope.comments.push(comment);
           });
+          $scope.loading = false;
           $scope.$apply();
         }
       );

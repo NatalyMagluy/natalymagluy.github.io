@@ -1,19 +1,36 @@
-<h1>Comments for "{{name}}"</h1>
-<div class="small">By {{post.author}}</div>
-<h2><img ng-src="{{post.thumbnail}}"/>{{post.title}}</h2>
-<a ng-href="{{post.url}}">Click to see</a>
-<div ng-repeat="comment in comments" class="underlined">
-  <div>{{comment.body || comment.selftext}}</div>
-  <div class="row small">
-    <div class="col-sm-6 text-left">{{comment.author}}</div>
-    <div class="col-sm-6 text-right">{{formatDate(comment.created_utc)}}</div>
-  </div>
-  <div ng-repeat="reply in comment.replies" class="small underlined">
-    <div>{{reply.data.body || reply.data.selftext}}</div>
-    <div class="small">{{reply.level}}</div>
-    <div class="row small">
-      <div class="col-sm-6 text-left">{{reply.data.author}}</div>
-      <div class="col-sm-6 text-right">{{formatDate(reply.data.created_utc)}}</div>
+<div class="article-loader loader" ng-show="loading">
+  <img src="images/ajax-loader.gif"/>
+</div>
+<div ng-show="!loading">
+  <div class="row article underlined">
+    <a ng-href="{{post.url}}" class="col-sm-3">
+      <img ng-src="{{post.thumbnail}}"/>
+    </a>
+    <div class="col-sm-9">
+      <div class="author">
+        {{post.author}}, {{formatDate(post.created_utc)}}
+      </div>
+      <div class="article-title">{{post.title}}</div>
     </div>
   </div>
+
+  <div ng-if="comments.length === 0" class="no-comments">
+    There are no comments yet.
+  </div>
+
+  <div ng-repeat="comment in comments" class="main-comment">
+    <div class="author">
+      {{comment.author}}, {{formatDate(comment.created_utc)}}
+    </div>
+    <div class="comment">{{comment.body || comment.selftext}}</div>
+    <div ng-repeat="reply in comment.replies"
+         class="small"
+         style="margin-left: {{(reply.level+1) * 15}}px;">
+      <div class="author">
+        {{reply.data.author}}, {{formatDate(reply.data.created_utc)}}
+      </div>
+      <div class="comment">{{reply.data.body || reply.data.selftext}}</div>
+    </div>
+  </div>
+
 </div>

@@ -1,40 +1,36 @@
 <h1>Posts from "{{name}}"</h1>
-<div class="row">
-  <button class="col-lg-2 btn btn-default" ng-click="get('hot')">Hot</button>
-  <button class="col-lg-2 btn btn-default" ng-click="get('new')">New</button>
-  <button class="col-lg-2 btn btn-default" ng-click="get('controversial')">Controversial</button>
-  <button class="col-lg-2 btn btn-default" ng-click="get('top')">Top</button>
+<div class="navigation">
+    <button class="nav-button btn btn-default" ng-click="get('hot')">Hot</button>
+    <button class="nav-button btn btn-default" ng-click="get('new')">New</button>
+    <button class="nav-button btn btn-default" ng-click="get('controversial')">Controversial</button>
+    <button class="nav-button btn btn-default" ng-click="get('top')">Top</button>
 </div>
-<div class="row">
-  <button class="col-sm-1 btn btn-primary"
-          ng-click="movePrev()"
-          ng-show="count >= 2 * pageSize">
-    < Prev</button>
-  <button class="col-sm-1 btn btn-primary"
-          ng-click="moveNext()">
-    Next ></button>
+<div class="loader" ng-show="loading">
+  <img src="images/ajax-loader.gif"/>
 </div>
-<div ng-repeat="post in posts" class="underlined">
+<div ng-repeat="post in posts" class="post" ng-class="{'underlined': !$last}">
+  <div class="row">
+    <img class="col-sm-2" no-image ng-src="{{post.data.thumbnail}}"/>
+    <div class="col-sm-10">
+      <div class="author">
+        {{post.data.author}}, {{formatDate(post.data.created_utc)}}
+      </div>
+      <span>{{post.data.title}}</span>
+      <br/>
+      <a ng-href="#/r/{{name}}/comments/{{post.data.id}}">{{post.data.num_comments}} comments</a>
+    </div>
+  </div>
+</div>
+<div class="paging">
   <div>
-    <img ng-src="{{post.data.thumbnail}}"/>
-    <span>{{post.data.title}}</span>
-    <a ng-href="#/list/{{name}}/comments/{{post.data.id}}">{{post.data.num_comments}} comments</a>
+    <button class="btn btn-link"
+            ng-click="movePrev()"
+            ng-show="count >= 2 * pageSize">
+      < Prev</button>
   </div>
-  <div class="row small">
-    <div class="col-sm-6 text-left">
-      {{post.data.author}}
-    </div>
-    <div class="col-sm-6 text-right">
-      {{formatDate(post.data.created_utc)}}
-    </div>
+  <div>
+    <button class="btn btn-link"
+            ng-click="moveNext()">
+      Next ></button>
   </div>
-</div>
-<div class="row">
-  <button class="col-sm-1 btn btn-primary"
-          ng-click="movePrev()"
-          ng-show="count >= 2 * pageSize">
-    < Prev</button>
-  <button class="col-sm-1 btn btn-primary"
-          ng-click="moveNext()">
-    Next ></button>
 </div>

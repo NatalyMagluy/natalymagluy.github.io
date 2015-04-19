@@ -9,11 +9,16 @@
  */
 angular.module('app')
   .controller('MainCtrl', function ($scope, $location) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.go = function() {
+      if(!$scope.name) {
+        return;
+      }
+      $location.url('/r/' + $scope.name);
+    };
 
-    $location.url('/list/javascript');
+    $scope.keyupHandler = function(event) {
+      if(event.keyCode === 13) {
+        $scope.go();
+      }
+    };
   });

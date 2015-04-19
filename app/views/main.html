@@ -1,11 +1,9 @@
-<div>
-  <h1>Reddit Reader app</h1>
-</div>
-
-
-<div class="jumbotron">
-  <h1>Title</h1>
-  <p class="lead">
-    Main page
-  </p>
+<h1>Reddit Reader</h1>
+<div class="main">
+    <input type="text"
+           class="form-control"
+           placeholder="subreddit name"
+           ng-model="name"
+           ng-keyup="keyupHandler($event)"/>
+    <button class="btn btn-primary" ng-click="go()">Go</button>
 </div>

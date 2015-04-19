@@ -14,16 +14,16 @@ angular.module('app')
                                     RedditService,
                                     TimeFormatterService) {
     var modes = ['top', 'hot', 'new', 'controversial'],
-        currentMode = 'hot',
         opts = {},
         after,
         before;
 
-    $scope.pageSize = 50;
+    $scope.pageSize = 25;
     $scope.formatDate = TimeFormatterService.timeSince;
-
+    $scope.loading = false;
 
     $scope.name = $routeParams.param;
+    $scope.mode = $routeParams.mode || 'hot';
     if($routeParams.before) {
       opts.before = $routeParams.before;
     } else if($routeParams.after) {
@@ -33,15 +33,13 @@ angular.module('app')
 
     $scope.get = function (mode) {
       if(modes.indexOf(mode) > -1) {
-        if(currentMode !== mode) {
-          opts = {
-            after: null,
-            before: null,
-            count: null
-          };
+        if($scope.mode !== mode) {
+          $location.search({mode: mode, before: null, after: null, count: null});
+          return;
         }
-        currentMode = mode;
-        var req = RedditService[currentMode]($scope.name).limit($scope.pageSize);
+        $scope.loading = true;
+        $scope.mode = mode;
+        var req = RedditService[$scope.mode]($scope.name).limit($scope.pageSize);
 
         if(opts.after) {
           req.after(opts.after);
@@ -58,6 +56,7 @@ angular.module('app')
       $scope.posts = val.data.children;
       after = val.data.after;
       before = val.data.before;
+      $scope.loading = false;
       $scope.$apply();
     }
 
@@ -72,12 +71,13 @@ angular.module('app')
     $scope.movePrev = function () {
       before = before || getFullName(0);
       $scope.count -= $scope.pageSize;
-      $location.search({ before : before, after : null, count: $scope.count });
+      $location.search({ mode : $scope.mode, before : before, after : null, count: $scope.count });
     };
     $scope.moveNext = function () {
       after = after || getFullName($scope.posts.length - 1);
       $scope.count += $scope.pageSize;
-      $location.search({ before : null, after : after, count: $scope.count });
+      $location.search({ mode : $scope.mode, before : null, after : after, count: $scope.count });
     };
-    $scope.get('hot');
+
+    $scope.get($scope.mode);
   });

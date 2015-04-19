@@ -20,19 +20,23 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/list/:param', {
+      .when('/r/:param', {
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
       })
-      .when('/list/:param?after=:after&count=:count', {
+      .when('/r/:param?mode=:mode', {
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
       })
-      .when('/list/:param?before=:before&count=:count', {
+      .when('/r/:param?mode=:mode&after=:after&count=:count', {
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
       })
-      .when('/list/:name/comments/:article', {
+      .when('/r/:param?mode=:mode&before=:before&count=:count', {
+        templateUrl: 'views/list.html',
+        controller: 'ListCtrl'
+      })
+      .when('/r/:name/comments/:article', {
         templateUrl: 'views/article.html',
         controller: 'ArticleCtrl'
       })
@@ -40,10 +44,10 @@ angular
         redirectTo: '/'
       });
   }).run(function() {
-    navigator.serviceWorker.register('/sw.js')
+    /*navigator.serviceWorker.register('/sw.js')
       .then(function(reg) {
         console.log('Yey!', reg);
       }).catch(function(err) {
         console.log('Boo!', err);
-      });
+      });*/
   });

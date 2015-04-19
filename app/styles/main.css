@@ -1,45 +1,92 @@
 body {
   padding: 0;
+  min-width: 700px;
+  overflow-x: auto;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
+h1 {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .underlined {
   border-bottom: solid lightgrey 1px;
+}
+
+.post {
+  padding-bottom: 15px;
+  margin-bottom: 19px;
+}
+
+.main > button {
+  height: 50px;
+  width: 200px;
+  margin: 40px auto;
+  font-size: 1.5em;
+  display: block;
+}
+
+.main > input {
+  margin-top: 30px;
+  height: 50px;
+  font-size: 1.5em;
+}
+
+.author {
+  font-size: 0.7em;
+  color: #808080;
+}
+
+.navigation {
+  width:532px;
+  margin:0 auto;
+}
+
+.navigation button {
+  margin: 5px 5px 25px;
+  width: 120px;
+}
+
+.paging div:first-child {
+  float: left;
+}
+
+.paging div:last-child {
+  float: right;
+}
+
+.paging div{
+  padding-bottom: 20px;
+}
+
+.comment {
+  margin-bottom: 10px;
+}
+
+.main-comment > .author,
+.no-comments {
+  margin-top: 30px;
+}
+
+.article {
+  margin-top: 30px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.article-title {
+  font-size: 1.5em;
+}
+
+.loader {
+  margin: 0 auto;
+  width: 32px;
+}
+
+.article-loader {
+  margin-top: 100px;
 }
