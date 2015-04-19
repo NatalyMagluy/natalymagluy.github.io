@@ -8,11 +8,11 @@
  * Controller of the app
  */
 angular.module('app')
-  .controller('ArticleCtrl', function ($scope, $routeParams, RedditService) {
+  .controller('ArticleCtrl', function ($scope, $routeParams, RedditService, TimeFormatterService) {
     $scope.article = $routeParams.article;
     $scope.name = $routeParams.name;
     $scope.getComments = function() {
-      RedditService.getComments($scope.name, $scope.article).then(function(val) {
+      RedditService.comments($scope.article, $scope.name).sort("hot").fetch(function(val) {
           $scope.post = val[0].data.children[0].data;
           $scope.comments = [];
           var comment;
@@ -21,12 +21,11 @@ angular.module('app')
             comment.replies = value.data.replies && value.data.replies.data.children;
             $scope.comments.push(comment);
           });
+          $scope.$apply();
         }
       );
     };
 
     $scope.getComments();
-    $scope.formatDate = function(ticks) {
-      return new Date(ticks).toUTCString();
-    }
+    $scope.formatDate = TimeFormatterService.timeSince;
   });

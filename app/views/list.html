@@ -1,9 +1,18 @@
 <h1>Posts from "{{name}}"</h1>
 <div class="row">
-  <button class="col-lg-2 btn btn-default" ng-click="getHot()">Hot</button>
-  <button class="col-lg-2 btn btn-default" ng-click="getNew()">New</button>
-  <button class="col-lg-2 btn btn-default" ng-click="getControversial()">Controversial</button>
-  <button class="col-lg-2 btn btn-default" ng-click="getTop()">Top</button>
+  <button class="col-lg-2 btn btn-default" ng-click="get('hot')">Hot</button>
+  <button class="col-lg-2 btn btn-default" ng-click="get('new')">New</button>
+  <button class="col-lg-2 btn btn-default" ng-click="get('controversial')">Controversial</button>
+  <button class="col-lg-2 btn btn-default" ng-click="get('top')">Top</button>
+</div>
+<div class="row">
+  <button class="col-sm-1 btn btn-primary"
+          ng-click="movePrev()"
+          ng-show="count >= 2 * pageSize">
+    < Prev</button>
+  <button class="col-sm-1 btn btn-primary"
+          ng-click="moveNext()">
+    Next ></button>
 </div>
 <div ng-repeat="post in posts" class="underlined">
   <div>
@@ -11,7 +20,20 @@
     <a ng-href="#/list/{{name}}/comments/{{post.data.id}}">{{post.data.title}}</a>
   </div>
   <div class="row small">
-    <div class="col-sm-6 text-left">{{post.data.author}}</div>
-    <div class="col-sm-6 text-right">{{formatDate(post.data.created_utc)}}</div>
+    <div class="col-sm-6 text-left">
+      {{post.data.author}}
+    </div>
+    <div class="col-sm-6 text-right">
+      {{formatDate(post.data.created_utc)}}
+    </div>
   </div>
+</div>
+<div class="row">
+  <button class="col-sm-1 btn btn-primary"
+          ng-click="movePrev()"
+          ng-show="count >= 2 * pageSize">
+    < Prev</button>
+  <button class="col-sm-1 btn btn-primary"
+          ng-click="moveNext()">
+    Next ></button>
 </div>
