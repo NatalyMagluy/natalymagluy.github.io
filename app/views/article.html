@@ -10,6 +10,7 @@
   </div>
   <div ng-repeat="reply in comment.replies" class="small underlined">
     <div>{{reply.data.body || reply.data.selftext}}</div>
+    <div class="small">{{reply.level}}</div>
     <div class="row small">
       <div class="col-sm-6 text-left">{{reply.data.author}}</div>
       <div class="col-sm-6 text-right">{{formatDate(reply.data.created_utc)}}</div>
