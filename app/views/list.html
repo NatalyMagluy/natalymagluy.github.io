@@ -1,19 +1,35 @@
-<h1>Posts from "{{name}}"</h1>
+<h1>
+  <a href="/#/" class="no-link">
+    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+    Home
+  </a>
+</h1>
+<h1>
+  Posts from "{{name}}"
+</h1>
 <div class="navigation">
-    <button class="nav-button btn btn-default" ng-click="get('hot')">Hot</button>
-    <button class="nav-button btn btn-default" ng-click="get('new')">New</button>
-    <button class="nav-button btn btn-default" ng-click="get('controversial')">Controversial</button>
-    <button class="nav-button btn btn-default" ng-click="get('top')">Top</button>
+    <button class="nav-button btn btn-default"
+            ng-class="{'btn-primary': mode === 'hot'}"
+            ng-click="get('hot')">Hot</button>
+    <button class="nav-button btn btn-default"
+            ng-class="{'btn-primary': mode === 'new'}"
+            ng-click="get('new')">New</button>
+    <button class="nav-button btn btn-default"
+            ng-class="{'btn-primary': mode === 'controversial'}"
+            ng-click="get('controversial')">Controversial</button>
+    <button class="nav-button btn btn-default"
+            ng-class="{'btn-primary': mode === 'top'}"
+            ng-click="get('top')">Top</button>
 </div>
 <div class="loader" ng-show="loading">
   <img src="images/ajax-loader.gif"/>
 </div>
 <div ng-repeat="post in posts" class="post" ng-class="{'underlined': !$last}">
   <div class="row">
-    <img class="col-sm-2" no-image ng-src="{{post.data.thumbnail}}"/>
+    <img class="col-sm-2" no-image ng-src="{{post.data.thumbnail}}" ng-show="post.data.thumbnail"/>
     <div class="col-sm-10">
       <div class="author">
-        {{post.data.author}}, {{formatDate(post.data.created_utc)}}
+        {{post.data.author}}, {{formatDate(post.data.created_utc)}} <a ng-href="{{post.data.url}}">({{ post.data.domain }})</a>
       </div>
       <span>{{post.data.title}}</span>
       <br/>

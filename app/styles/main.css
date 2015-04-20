@@ -90,3 +90,7 @@ h1 {
 .article-loader {
   margin-top: 100px;
 }
+
+.no-link, .no-link:hover, .no-link:visited, .no-link:active {
+  text-decoration: none;
+}

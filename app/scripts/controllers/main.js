@@ -21,4 +21,33 @@ angular.module('app')
         $scope.go();
       }
     };
+
+    $scope.cachesCleared = false;
+
+    $scope.clearCache = function() {
+      $scope.cachesCleared = false;
+      sendMessage({
+        command: 'delete'
+      }).then(function() {
+        $scope.cachesCleared = true;
+        $scope.$apply();
+        console.log('cleared');
+      });
+    };
+
+    function sendMessage(message) {
+      return new Promise(function(resolve, reject) {
+        var messageChannel = new MessageChannel();
+        messageChannel.port1.onmessage = function(event) {
+          if (event.data.error) {
+            reject(event.data.error);
+          } else {
+            resolve(event.data);
+          }
+        };
+
+        navigator.serviceWorker.controller.postMessage(message, [messageChannel.port2]);
+      });
+    }
+
   });

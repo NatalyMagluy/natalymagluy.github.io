@@ -44,10 +44,10 @@ angular
         redirectTo: '/'
       });
   }).run(function() {
-    /*navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('/sw.js')
       .then(function(reg) {
-        console.log('Yey!', reg);
+        console.log('ServiceWorker registered:', reg);
       }).catch(function(err) {
-        console.log('Boo!', err);
-      });*/
+        console.log('Error registering ServiceWorker: ', err);
+      });
   });

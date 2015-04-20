@@ -1,14 +1,20 @@
+<h1>
+  <a href="/#/" class="no-link">
+    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+    Home
+  </a>
+</h1>
 <div class="article-loader loader" ng-show="loading">
   <img src="images/ajax-loader.gif"/>
 </div>
 <div ng-show="!loading">
   <div class="row article underlined">
-    <a ng-href="{{post.url}}" class="col-sm-3">
-      <img no-image ng-src="{{post.thumbnail}}"/>
+    <a ng-href="{{post.url}}" ng-show="post.thumbnail">
+      <img class="col-sm-3" no-image ng-src="{{post.thumbnail}}" />
     </a>
     <div class="col-sm-9">
       <div class="author">
-        {{post.author}}, {{formatDate(post.created_utc)}}
+        {{post.author}}, {{formatDate(post.created_utc)}} <a ng-href="{{post.url}}">({{ post.domain }})</a>
       </div>
       <div class="article-title">{{post.title}}</div>
     </div>
